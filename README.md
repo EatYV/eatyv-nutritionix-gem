@@ -19,10 +19,7 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
-  @nutritionix = HTTParty.get(
-      "https://trackapi.nutritionix.com/v2/search/instant/?query=#{body}", 
-      :headers => headers
-    )
+  Eatyv::GetNutritionalValues.new('pizza')
 ```
 
 ## Development

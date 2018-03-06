@@ -1,24 +1,33 @@
 require "eatyv/nutritionix/gem/version"
+require "httparty"
 
 module Eatyv
-  module Nutritionix
-    module Gem
-      def initalize(food)
-        headers = {
-          'x-app-id' => 'b479cfcf',
-          'x-app-key' => '83ebc7a194ab072f8c4be2b3dba82732',
-          'content-type' => 'application/json'
-        } 
-        
-        body = {
-          "query" => user_food,
-        }
-        
-        @nutritionix = HTTParty.get(
-          "https://trackapi.nutritionix.com/v2/search/instant/?query=#{body}", 
-          :headers => headers
-        )
+  include HTTParty
+  class GetNutritionalValues
+    def initialize(food)
+      @food = food
+
+      headers = {
+        'x-app-id' => 'b479cfcf',
+        'x-app-key' => '83ebc7a194ab072f8c4be2b3dba82732',
+        'content-type' => 'application/json'
+      } 
+      
+      body = {
+        "query" => @food,
+      }
+      
+      @nutritionix = HTTParty.get(
+        "https://trackapi.nutritionix.com/v2/search/instant/?query=#{body}", 
+        :headers => headers
+      )
+
+      @nutritionix.each do |nutritioni| 
+        nutritioni[1].each do |nutr|
+          nutr['food_name']   
+        end 
       end
+
     end
   end
 end

@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     eatyv-nutritionix-gem (0.1.0)
+      httparty (~> 0.13.7)
 
 GEM
   remote: https://rubygems.org/
